@@ -6,7 +6,6 @@ import './index.css';
 import StateProvider from './utils/contextProvider.jsx';
 import reducer, { initialState } from './utils/reducer';
 
-
 const router = createBrowserRouter([
   {
     path: '/',

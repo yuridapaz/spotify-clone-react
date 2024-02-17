@@ -4,16 +4,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '1DB954',
+        primary: '#1DB954',
         secondary: {
-          1: '000000',
-          2: '191414',
-          3: 'FFFFFF',
+          1: '#000000',
+          2: '#191414',
+          3: '#FFFFFF',
         },
         neutral: {
-          1: 'B2B2B2',
-          2: '777777',
-          3: '535353',
+          1: '#B2B2B2',
+          2: '#777777',
+          3: '#535353',
         },
         genre: {
           1: '#55A891',
