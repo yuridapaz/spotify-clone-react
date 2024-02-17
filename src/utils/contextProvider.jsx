@@ -1,11 +1,13 @@
 /* eslint-disable react/prop-types */
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useReducer } from 'react';
 
 export const StateContext = createContext();
 
 const StateProvider = ({ children, initialState, reducer }) => {
   return (
-    <StateContext.Provider value={{ initialState, reducer }}>{children}</StateContext.Provider>
+    <StateContext.Provider value={useReducer(reducer, initialState)}>
+      {children}
+    </StateContext.Provider>
   );
 };
 

@@ -28,7 +28,7 @@ export const Button = ({
   fullWidth,
   size,
   leadingIcon: LeadingIcon,
-  trailingIcon: TrailingIcon,
+  trailingIcon: TrailingIcon
 }: ButtonProps) => {
   return (
     <button
@@ -40,9 +40,9 @@ export const Button = ({
         className,
         fullWidth,
         size,
-        _content: LeadingIcon || TrailingIcon ? 'textAndIcon' : 'text',
+        _content: LeadingIcon || TrailingIcon ? 'textAndIcon' : 'text'
       })}
-      data-testId={dataTestId}
+      data-testid={dataTestId}
     >
       {LeadingIcon ? LeadingIcon : null}
       {children}
@@ -66,7 +66,7 @@ export const IconButton = ({ icon: Icon, intent, className, size }: IconButtonPr
         className,
         size,
         rounded: 'full',
-        _content: 'icon',
+        _content: 'icon'
       })}
     >
       {Icon}
