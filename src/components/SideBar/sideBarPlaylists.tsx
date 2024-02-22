@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useStateProvider } from '../../utils/contextProvider';
 import axios from 'axios';
+import { reducerCases } from '../../utils/constants';
 
 function SideBarPlaylists() {
   const [{ token }, dispatch] = useStateProvider();
@@ -13,7 +14,10 @@ function SideBarPlaylists() {
           'Content-Type': 'application/json'
         }
       });
-      console.log(res);
+      const { items } = res.data;
+      const playlists = items.map(({ name, id }: any) => ({ name, id })); //REVIEW (any) //
+      console.log(playlists);
+      dispatch({ type: reducerCases.SET_PLAYLISTS, playlists });
     };
     getPlaylistData();
   }, [token, dispatch]);

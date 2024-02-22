@@ -4,6 +4,7 @@ import { formatHashToken } from './utils/function';
 import SideBar from './components/SideBar';
 import { useStateProvider } from './utils/contextProvider';
 import { reducerCases } from './utils/constants';
+import NavBar from './components/Navbar';
 
 const App = () => {
   const location = useLocation();
@@ -29,7 +30,7 @@ const App = () => {
             {/* main div */}
             <div className="flex w-full flex-col bg-secondary-2">
               {/* navbar */}
-              <div className="h-20">navbar</div>
+              <NavBar />
               {/* main */}
               <div className="h-full">main</div>
             </div>
