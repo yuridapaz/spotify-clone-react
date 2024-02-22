@@ -3,7 +3,7 @@ import SideBarPlaylists from './sideBarPlaylists';
 
 const SideBar = () => {
   return (
-    <div className="w-80 bg-secondary-1 p-4">
+    <div className="h-full w-80 overflow-auto bg-secondary-1 p-4">
       <SideBarList />
       <SideBarPlaylists />
     </div>

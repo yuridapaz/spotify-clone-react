@@ -23,8 +23,8 @@ const App = () => {
   return (
     <div>
       {token ? (
-        <div className="flex h-screen w-full flex-col bg-slate-300 text-white">
-          <div className="flex h-full w-full">
+        <div className="flex h-screen w-full flex-col overflow-hidden bg-slate-300 text-white">
+          <div className="flex h-[calc(100%-8rem)] w-full">
             {/* sidebar */}
             <SideBar />
             {/* main div */}
