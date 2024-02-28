@@ -1,6 +1,6 @@
 import { VariantProps, cva } from 'class-variance-authority';
 
-export type ButtonVariantProps = VariantProps<typeof buttonVariants>;
+// export type ButtonVariantProps = VariantProps<typeof buttonVariants>;
 
 export const buttonVariants = cva('transition-all m-auto cursor-pointer', {
   variants: {

@@ -16,8 +16,7 @@ function SideBarPlaylists() {
         }
       });
       const { items } = res.data;
-      const playlists = items.map(({ name, id }: any) => ({ name, id })); // REVIEW (any) //
-      // console.log(playlists);
+      const playlists = items.map(({ name, id }: { name: any; id: number }) => ({ name, id })); // REVIEW (type) //
       dispatch({ type: reducerCases.SET_PLAYLISTS, playlists });
     };
     getPlaylistData();

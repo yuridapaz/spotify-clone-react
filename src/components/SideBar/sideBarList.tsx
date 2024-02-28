@@ -26,7 +26,8 @@ const SideBarList = () => {
     <ul className="mb-10 flex w-full flex-col">
       {sideBarLinks.map((obj, i) => (
         <Link to={obj.link} key={i}>
-          <li>
+          {/* //REVIEW: Ordem do link - li - button// */}
+          <li className="">
             <Button
               leadingIcon={obj.icon}
               intent={'invisible'}
