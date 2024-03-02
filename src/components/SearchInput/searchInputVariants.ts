@@ -1,6 +1,6 @@
 import { VariantProps, cva } from 'class-variance-authority';
 
-export const searchComponentVariants = cva('', {
+export const searchComponentVariants = cva('outline-none', {
   variants: {
     intent: {
       primary: 'bg-neutral-3 rounded-full',
@@ -8,12 +8,15 @@ export const searchComponentVariants = cva('', {
       // tertiary: 'bg-white text-black',
     },
     size: {
-      small: 'px-2.5 py-1.5',
-      medium: 'px-3 py-2',
-      large: 'px-3.5 py-2.5',
-      extraLarge: 'px-4 py-3'
+      small: '',
+      medium: '',
+      large: '',
+      extraLarge: ''
     },
-    _icon: { true: 'absolute' }
+    _content: {
+      input: '',
+      icon: 'bg-transparent absolute'
+    }
   },
   defaultVariants: {
     intent: 'primary',
@@ -21,20 +24,50 @@ export const searchComponentVariants = cva('', {
   },
   compoundVariants: [
     {
-      _icon: true,
+      _content: 'icon',
       size: 'small',
-      className: 'h-4 w-4 left-2 top-1/2 -translate-y-1/2  px-0 py-0'
+      className: 'h-4 w-4 left-2 top-1/2 -translate-y-1/2'
     },
     {
-      _icon: true,
+      _content: 'icon',
       size: 'medium',
-      className: 'h-5 w-5  left-2 top-1/2 -translate-y-1/2  px-0 py-0'
+      className: 'h-5 w-5 left-2 top-1/2 -translate-y-1/2'
     },
-    { _icon: true, size: 'large', className: 'h-6 w-6  left-2 top-1/2 -translate-y-1/2 px-0 py-0' },
     {
-      _icon: true,
+      _content: 'icon',
+      size: 'large',
+      className: 'h-6 w-6 left-2 top-1/2 -translate-y-1/2'
+    },
+    {
+      _content: 'icon',
       size: 'extraLarge',
-      className: 'h-7 w-7  left-2 top-1/2 -translate-y-1/2 px-0 py-0'
+      className: 'h-7 w-7 left-2 top-1/2 -translate-y-1/2'
+    },
+    {
+      _content: 'input',
+      size: 'small',
+      className: 'px-2.5 py-1.5 pl-7'
+    },
+    {
+      _content: 'input',
+      size: 'medium',
+      className: 'px-3 py-2 pl-8'
+    },
+    {
+      _content: 'input',
+      size: 'large',
+      className: 'px-3.5 py-2.5 pl-9'
+    },
+    {
+      _content: 'input',
+      size: 'extraLarge',
+      className: 'px-4 py-3 pl-10'
+    },
+    {
+      _content: 'input',
+      intent: 'primary',
+      className:
+        'transition-colors hover:bg-neutral-2 border border-neutral-3  hover:border-neutral-1 hover:border'
     }
   ]
 });

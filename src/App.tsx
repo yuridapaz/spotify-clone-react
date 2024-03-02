@@ -6,7 +6,6 @@ import { useStateProvider } from './utils/contextProvider';
 import { reducerCases } from './utils/constants';
 import NavBar from './components/Navbar';
 import axios from 'axios';
-import SearchInput from './components/SearchInput';
 
 const App = () => {
   const location = useLocation();
@@ -28,6 +27,7 @@ const App = () => {
         }
       };
       const { data } = await axios.get('https://api.spotify.com/v1/me', options);
+      dispatch({ type: reducerCases.SET_USER, user: data });
     };
     getUserInfo();
   }, [token, dispatch]);
@@ -41,17 +41,12 @@ const App = () => {
           <div className="flex h-[calc(100%-8rem)] w-full">
             {/* sidebar */}
             <SideBar />
-            {/* main div */}
-            <div className="flex w-full flex-col bg-secondary-2">
+            {/* main component */}
+            <div className="flex w-full flex-col bg-secondary-2 p-6">
               {/* navbar */}
               <NavBar />
-              {/* main */}
-              <div className="h-full space-y-6">
-                <SearchInput size={'small'} />
-                <SearchInput size={'medium'} />
-                <SearchInput size={'large'} />
-                <SearchInput size={'extraLarge'} />
-              </div>
+              {/* main area */}
+              <div className="h-full"></div>
             </div>
           </div>
           <div className="flex h-32 border-t border-t-neutral-3 bg-secondary-2">footer</div>

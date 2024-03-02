@@ -1,17 +1,15 @@
 import React from 'react';
-import { CiSearch } from 'react-icons/ci';
+import { IoSearch } from 'react-icons/io5';
 import { searchComponentVariants } from './searchInputVariants';
 import { VariantProps } from 'class-variance-authority';
 
 type SearchComponentVariantProps = VariantProps<typeof searchComponentVariants>;
 
-type SearchComponentProps = SearchComponentVariantProps;
-
-const SearchInput = ({ intent, size, _icon }: SearchComponentProps) => {
+const SearchInput = ({ intent, size }: SearchComponentVariantProps) => {
   return (
-    <div className="relative inline-block">
-      <CiSearch className={searchComponentVariants({ intent, size, _icon: true })} />
-      <input type="text" className={searchComponentVariants({ intent, size })} />
+    <div className="relative inline-block ">
+      <input type="text" className={searchComponentVariants({ intent, size, _content: 'input' })} />
+      <IoSearch className={searchComponentVariants({ intent, size, _content: 'icon' })} />
     </div>
   );
 };

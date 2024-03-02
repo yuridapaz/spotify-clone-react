@@ -4,7 +4,7 @@ import axios from 'axios';
 import { reducerCases } from '../../utils/constants';
 import { Link } from 'react-router-dom';
 
-function SideBarPlaylists() {
+const SideBarPlaylists = () => {
   const [{ token, playlists }, dispatch] = useStateProvider();
 
   useEffect(() => {
@@ -25,114 +25,16 @@ function SideBarPlaylists() {
   return (
     <ul className=" flex h-[570px] w-full flex-col overflow-auto">
       {playlists
-        ? playlists.map((playlist: any) => (
-            <>
-              {' '}
-              <li className="px-3 py-2" key={playlist.id}>
-                <Link to={''} className="">
-                  {playlist.name}
-                </Link>
-              </li>
-              <li className="px-3 py-2" key={playlist.id}>
-                <Link to={''} className="">
-                  {playlist.name}
-                </Link>
-              </li>
-              <li className="px-3 py-2" key={playlist.id}>
-                <Link to={''} className="">
-                  {playlist.name}
-                </Link>
-              </li>
-              <li className="px-3 py-2" key={playlist.id}>
-                <Link to={''} className="">
-                  {playlist.name}
-                </Link>
-              </li>
-              <li className="px-3 py-2" key={playlist.id}>
-                <Link to={''} className="">
-                  {playlist.name}
-                </Link>
-              </li>
-              <li className="px-3 py-2" key={playlist.id}>
-                <Link to={''} className="">
-                  {playlist.name}
-                </Link>
-              </li>
-              <li className="px-3 py-2" key={playlist.id}>
-                <Link to={''} className="">
-                  {playlist.name}
-                </Link>
-              </li>
-              <li className="px-3 py-2" key={playlist.id}>
-                <Link to={''} className="">
-                  {playlist.name}
-                </Link>
-              </li>
-              <li className="px-3 py-2" key={playlist.id}>
-                <Link to={''} className="">
-                  {playlist.name}
-                </Link>
-              </li>
-              <li className="px-3 py-2" key={playlist.id}>
-                <Link to={''} className="">
-                  {playlist.name}
-                </Link>
-              </li>
-              <li className="px-3 py-2" key={playlist.id}>
-                <Link to={''} className="">
-                  {playlist.name}
-                </Link>
-              </li>
-              <li className="px-3 py-2" key={playlist.id}>
-                <Link to={''} className="">
-                  {playlist.name}
-                </Link>
-              </li>
-              <li className="px-3 py-2" key={playlist.id}>
-                <Link to={''} className="">
-                  {playlist.name}
-                </Link>
-              </li>
-              <li className="px-3 py-2" key={playlist.id}>
-                <Link to={''} className="">
-                  {playlist.name}
-                </Link>
-              </li>
-              <li className="px-3 py-2" key={playlist.id}>
-                <Link to={''} className="">
-                  {playlist.name}
-                </Link>
-              </li>{' '}
-              <li className="px-3 py-2" key={playlist.id}>
-                <Link to={''} className="">
-                  {playlist.name}
-                </Link>
-              </li>{' '}
-              <li className="px-3 py-2" key={playlist.id}>
-                <Link to={''} className="">
-                  {playlist.name}
-                </Link>
-              </li>{' '}
-              <li className="px-3 py-2" key={playlist.id}>
-                <Link to={''} className="">
-                  {playlist.name}
-                </Link>
-              </li>{' '}
-              <li className="px-3 py-2" key={playlist.id}>
-                <Link to={''} className="">
-                  {playlist.name}
-                </Link>
-              </li>{' '}
-              <li className="px-3 py-2" key={playlist.id}>
-                <Link to={''} className="">
-                  {playlist.name}
-                </Link>
-              </li>
-            </>
+        ? playlists.map((playlist: any, i: number) => (
+            <li className="px-3 py-2" key={playlist.id}>
+              <Link to={''} className="">
+                {playlist.name}
+              </Link>
+            </li>
           ))
         : ''}
     </ul>
   );
-}
+};
 
 export default SideBarPlaylists;

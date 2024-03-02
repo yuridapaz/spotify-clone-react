@@ -58,7 +58,7 @@ type IconButtonProps = Omit<
   icon: ReactIconComponent;
 };
 
-export const IconButton = ({ icon: Icon, intent, className, size }: IconButtonProps) => {
+export const IconButton = ({ icon: Icon, intent, className, size, disabled }: IconButtonProps) => {
   return (
     <button
       className={buttonVariants({
@@ -68,6 +68,7 @@ export const IconButton = ({ icon: Icon, intent, className, size }: IconButtonPr
         rounded: 'full',
         _content: 'icon'
       })}
+      disabled={disabled}
     >
       {Icon}
     </button>

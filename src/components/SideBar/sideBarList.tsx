@@ -7,17 +7,17 @@ const SideBarList = () => {
   const sideBarLinks = [
     {
       name: 'Home',
-      icon: <MdHomeFilled />,
+      icon: <MdHomeFilled className="h-6 w-6" />,
       link: '/'
     },
     {
       name: 'Search',
-      icon: <MdSearch />,
+      icon: <MdSearch className="h-6 w-6" />,
       link: '/'
     },
     {
       name: 'Library',
-      icon: <IoLibrary />,
+      icon: <IoLibrary className="h-6 w-6" />,
       link: '/'
     }
   ];
@@ -32,6 +32,7 @@ const SideBarList = () => {
               leadingIcon={obj.icon}
               intent={'invisible'}
               className="rounded-sm text-xl text-neutral-1 hover:text-white"
+              disabled
             >
               {obj.name}
             </Button>
