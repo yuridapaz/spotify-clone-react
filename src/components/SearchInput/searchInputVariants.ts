@@ -3,7 +3,8 @@ import { VariantProps, cva } from 'class-variance-authority';
 export const searchComponentVariants = cva('outline-none', {
   variants: {
     intent: {
-      primary: 'bg-neutral-3 rounded-full',
+      //REVIEW: color//
+      primary: 'bg-neutral-4 rounded-full',
       secondary: 'bg-neutral-2'
       // tertiary: 'bg-white text-black',
     },
@@ -15,7 +16,7 @@ export const searchComponentVariants = cva('outline-none', {
     },
     _content: {
       input: '',
-      icon: 'bg-transparent absolute'
+      icon: 'bg-invisible absolute'
     }
   },
   defaultVariants: {
@@ -36,12 +37,12 @@ export const searchComponentVariants = cva('outline-none', {
     {
       _content: 'icon',
       size: 'large',
-      className: 'h-6 w-6 left-2 top-1/2 -translate-y-1/2'
+      className: 'h-5 w-5 left-3 top-1/2 -translate-y-1/2'
     },
     {
       _content: 'icon',
       size: 'extraLarge',
-      className: 'h-7 w-7 left-2 top-1/2 -translate-y-1/2'
+      className: 'h-5 w-5 left-3 top-1/2 -translate-y-1/2'
     },
     {
       _content: 'input',
@@ -67,7 +68,7 @@ export const searchComponentVariants = cva('outline-none', {
       _content: 'input',
       intent: 'primary',
       className:
-        'transition-colors hover:bg-neutral-2 border border-neutral-3  hover:border-neutral-1 hover:border'
+        'transition-colors border border-neutral-4 hover:border-neutral-3 focus:outline-1.5 focus:-outline-offset-1 focus:outline-white placeholder:text-white/50 placeholder:font-light'
     }
   ]
 });

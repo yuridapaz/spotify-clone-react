@@ -16,7 +16,8 @@ const SideBarPlaylists = () => {
         }
       });
       const { items } = res.data;
-      const playlists = items.map(({ name, id }: { name: any; id: number }) => ({ name, id })); // REVIEW (type) //
+      //TODO: type items//
+      const playlists = items.map(({ name, id }: { name: string; id: string }) => ({ name, id }));
       dispatch({ type: reducerCases.SET_PLAYLISTS, playlists });
     };
     getPlaylistData();
@@ -25,7 +26,7 @@ const SideBarPlaylists = () => {
   return (
     <ul className=" flex h-[570px] w-full flex-col overflow-auto">
       {playlists
-        ? playlists.map((playlist: any, i: number) => (
+        ? playlists.map((playlist: any) => (
             <li className="px-3 py-2" key={playlist.id}>
               <Link to={''} className="">
                 {playlist.name}

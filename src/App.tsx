@@ -12,13 +12,11 @@ const App = () => {
   const [{ token }, dispatch] = useStateProvider();
 
   useEffect(() => {
-    // REVIEW: Page login to get hash token //
     const hash = location.hash;
     if (hash) {
       const token = formatHashToken(hash);
       dispatch({ type: reducerCases.SET_TOKEN, token });
     }
-    // REVIEW: END//
     const getUserInfo = async () => {
       let options = {
         headers: {
@@ -52,7 +50,7 @@ const App = () => {
           <div className="flex h-32 border-t border-t-neutral-3 bg-secondary-2">footer</div>
         </div>
       ) : (
-        <a href={link} rel="noopener noreferrer">
+        <a href={link} target="_blank" rel="noopener noreferrer">
           Open Spotify Link
         </a>
       )}

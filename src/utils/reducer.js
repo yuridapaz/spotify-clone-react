@@ -3,7 +3,7 @@ import { reducerCases } from './constants';
 export const initialState = {
   token: null,
   playlists: [],
-  user: 'Eu'
+  user: null
 };
 
 const reducer = (state, action) => {
