@@ -2,13 +2,12 @@ import { GoChevronLeft, GoChevronRight, GoBell } from 'react-icons/go';
 import { MdGroups } from 'react-icons/md';
 import { IconButton } from '../Button';
 import { useStateProvider } from '../../utils/contextProvider';
-import SearchInput from '../SearchInput';
 
 const NavBar = () => {
   const [{ user }] = useStateProvider();
 
   return (
-    <div className="flex items-center justify-between ">
+    <div className="sticky left-0 right-0 top-0 z-20 flex items-center justify-between bg-transparent p-6">
       <div className="flex h-10 items-center space-x-2.5">
         <div className="space-x-1.5">
           <IconButton
