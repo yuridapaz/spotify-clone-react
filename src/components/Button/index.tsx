@@ -1,13 +1,10 @@
 import React, { ButtonHTMLAttributes } from 'react';
+
 import { VariantProps } from 'class-variance-authority';
 import { buttonVariants } from './buttonVariants';
 
-type ButtonComponent = Pick<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  'disabled' | 'onClick' | 'children' | 'className'
->;
+type ButtonComponent = Pick<ButtonHTMLAttributes<HTMLButtonElement>, 'disabled' | 'onClick' | 'children' | 'className'>;
 type ButtonVariantProps = Omit<VariantProps<typeof buttonVariants>, '_content'>;
-
 type ReactIconComponent = React.ReactNode;
 
 type ButtonProps = ButtonComponent &
