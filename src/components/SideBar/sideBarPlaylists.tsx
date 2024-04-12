@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { reducerCases } from '../../utils/constants';
+import { reducerCases } from '../../reducer/constants';
 import { useEffect } from 'react';
-import { useStateProvider } from '../../utils/contextProvider';
+import { useStateProvider } from '../../context/contextProvider';
 
 // type PlaylistDisplayType = { name: string; id: string };
 

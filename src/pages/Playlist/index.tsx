@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import axios from 'axios';
 import { reducerCases } from '../../utils/constants';
-import { useStateProvider } from '../../utils/contextProvider';
+import { useStateProvider } from '../../context/contextProvider';
 
 const PlaylistPage = () => {
   const [{ token, selectedPlaylistID }, dispatch] = useStateProvider();

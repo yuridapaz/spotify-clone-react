@@ -4,12 +4,12 @@ export const initialState = {
   token: null,
   playlists: [],
   user: null,
-  selectedPlaylistID: '6RzUQItSfadSaWc9aU6HUQ'
+  selectedPlaylistID: null
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case reducerCases.SET_TOKEN:
+    case reducerCases.SET_ACCESS_TOKEN:
       return {
         ...state,
         token: action.token
