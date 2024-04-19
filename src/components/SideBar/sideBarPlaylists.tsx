@@ -1,34 +1,31 @@
+import { reducerCases, requestUrl } from '../../reducer/constants';
+
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { reducerCases } from '../../reducer/constants';
+import { callApi } from '../../context/helpers';
 import { useEffect } from 'react';
 import { useStateProvider } from '../../context/contextProvider';
 
-// type PlaylistDisplayType = { name: string; id: string };
-
 const SideBarPlaylists = () => {
-  const [{ token, playlists }, dispatch] = useStateProvider();
+  const { state, dispatch } = useStateProvider();
+  const accessToken = localStorage.getItem('spotify_access_token');
 
   useEffect(() => {
-    const getPlaylistData = async () => {
-      const res = await axios.get('https://api.spotify.com/v1/me/playlists', {
-        headers: {
-          Authorization: 'Bearer ' + token,
-          'Content-Type': 'application/json'
-        }
-      });
-      const { items }: any = res.data;
-      const playlists = items.map(({ name, id }: { name: string; id: string }) => ({ name, id }));
-      dispatch({ type: reducerCases.SET_PLAYLISTS, playlists });
-    };
-    getPlaylistData();
-  }, [token, dispatch]);
+    if (accessToken) {
+      callApi(accessToken, `https://api.spotify.com/v1/me/playlists`, handlePlaylistResponse);
+    }
+  }, []);
+
+  const handlePlaylistResponse = async (data: any) => {
+    const playlists = data.items.map(({ name, id }: { name: string; id: string }) => ({ name, id }));
+    dispatch({ type: reducerCases.SET_PLAYLISTS, playlists });
+  };
 
   return (
     <ul className='flex h-[570px] w-full flex-col overflow-auto'>
-      {playlists
-        ? playlists.map((playlist: { name: string; id: string }) => (
-            <li className='px-3 py-2' key={playlist.id}>
+      {state.playlists
+        ? state.playlists.map((playlist: { name: string; id: string }) => (
+            <li className='overflow-hidden text-ellipsis whitespace-nowrap px-3 py-1.5' key={playlist.id}>
               <Link to={`/playlist/${playlist.id}`}>{playlist.name}</Link>
             </li>
           ))

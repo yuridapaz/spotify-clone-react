@@ -45,8 +45,7 @@ const callAuthorizationApi = async (postData) => {
     if (error.response === 401) {
       refreshAccessToken();
     } else {
-      console.log(error);
-      alert(error);
+      console.log(error.response);
     }
   }
 };
@@ -62,15 +61,6 @@ export const callApi = async (accessToken, requestUrl, handleCallBack) => {
     const { data } = await axios.get(requestUrl, options);
     handleCallBack(data);
   } catch (error) {
-    console.log(error.response.status);
     if (error.response.status === 401) refreshAccessToken();
   }
-};
-
-export const handleUserResponse = async (data) => {
-  console.log(data);
-};
-
-export const handlePlaylistResponse = async (data) => {
-  console.log(data);
 };

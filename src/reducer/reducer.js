@@ -1,19 +1,12 @@
 import { reducerCases } from './constants';
 
 export const initialState = {
-  token: null,
   playlists: [],
-  user: null,
-  selectedPlaylistID: null
+  user: null
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case reducerCases.SET_ACCESS_TOKEN:
-      return {
-        ...state,
-        token: action.token
-      };
     case reducerCases.SET_PLAYLISTS:
       return {
         ...state,
