@@ -6,7 +6,7 @@ import SearchInput from '../SearchInput';
 
 const NavBar = () => {
   return (
-    <div className='flex w-full items-center justify-between p-1'>
+    <div className=''>
       <div className='pl-16'>
         <IconButton icon={<GoChevronLeft className='h-8 w-8' />} intent={'secondary'} size={'extraSmall'} />
         <IconButton icon={<GoChevronRight className='h-8 w-8' />} intent={'secondary'} size={'extraSmall'} />

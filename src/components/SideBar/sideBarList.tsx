@@ -24,7 +24,7 @@ const SideBarList = () => {
   ];
 
   return (
-    <ul className='mb-10 flex w-full flex-col'>
+    <ul className='mb-8'>
       {sideBarLinks.map((obj, i) => (
         <li className='' key={i}>
           <Link to={obj.link}>

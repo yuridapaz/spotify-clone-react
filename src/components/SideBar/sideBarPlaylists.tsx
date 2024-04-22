@@ -22,10 +22,31 @@ const SideBarPlaylists = () => {
   };
 
   return (
-    <ul className='flex h-[570px] w-full flex-col overflow-auto'>
+    <ul className=''>
       {state.playlists
         ? state.playlists.map((playlist: { name: string; id: string }) => (
-            <li className='overflow-hidden text-ellipsis whitespace-nowrap px-3 py-1.5' key={playlist.id}>
+            <li className='' key={playlist.id}>
+              <Link to={`/playlist/${playlist.id}`}>{playlist.name}</Link>
+            </li>
+          ))
+        : ''}{' '}
+      {state.playlists
+        ? state.playlists.map((playlist: { name: string; id: string }) => (
+            <li className='' key={playlist.id}>
+              <Link to={`/playlist/${playlist.id}`}>{playlist.name}</Link>
+            </li>
+          ))
+        : ''}{' '}
+      {state.playlists
+        ? state.playlists.map((playlist: { name: string; id: string }) => (
+            <li className='' key={playlist.id}>
+              <Link to={`/playlist/${playlist.id}`}>{playlist.name}</Link>
+            </li>
+          ))
+        : ''}{' '}
+      {state.playlists
+        ? state.playlists.map((playlist: { name: string; id: string }) => (
+            <li className='' key={playlist.id}>
               <Link to={`/playlist/${playlist.id}`}>{playlist.name}</Link>
             </li>
           ))
