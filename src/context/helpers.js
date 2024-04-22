@@ -38,8 +38,8 @@ const callAuthorizationApi = async (postData) => {
 
   try {
     const { data } = await axios.post(apiTokenUrl, postData, options);
-    if (data.access_token) localStorage.setItem('spotify_access_token', data.access_token);
-    if (data.refresh_token) localStorage.setItem('spotify_refresh_token', data.refresh_token);
+    if (data.access_token) setLocalToken('access_token', data.access_token);
+    if (data.refresh_token) setLocalToken('refresh_token', data.refresh_token);
     return data.access_token;
   } catch (error) {
     if (error.response === 401) {
@@ -62,5 +62,20 @@ export const callApi = async (accessToken, requestUrl, handleCallBack) => {
     handleCallBack(data);
   } catch (error) {
     if (error.response.status === 401) refreshAccessToken();
+  }
+};
+
+export const setLocalToken = (type, token) => {
+  switch (type) {
+    case 'access_token':
+      localStorage.setItem('spotify_access_token', token);
+      break;
+
+    case 'refresh_token':
+      localStorage.setItem('spotify_refresh_token', token);
+      break;
+
+    default:
+      break;
   }
 };

@@ -13,8 +13,7 @@ import { useStateProvider } from './context/contextProvider';
 const App = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const accessToken = localStorage.getItem('spotify_access_token');
-  const { state, dispatch } = useStateProvider();
+  const { state, dispatch, accessToken } = useStateProvider();
 
   useEffect(() => {
     const handleLoadApp = async () => {
@@ -31,7 +30,7 @@ const App = () => {
     handleLoadApp();
   }, []);
 
-  const handleUserResponse = async (userData: any) => {
+  const handleUserResponse = (userData: any) => {
     dispatch({ type: reducerCases.SET_USER, user: userData });
   };
 
@@ -55,25 +54,25 @@ const App = () => {
             <NavBar />
             <div className='flex h-full space-x-2 p-4'>
               <SideBar />
-              <div className='flex h-full w-full flex-col rounded-lg border border-red-100 p-4'>
-                <div className='flex w-full items-start space-x-3 border border-blue-50'>
+              <div className='flex h-full w-full flex-col bg-neutral-800'>
+                <div className='flex w-full items-start space-x-3 rounded-t-lg border border-blue-50 p-4'>
                   <Button
                     intent={'quaternary'}
-                    className='bg-neutral-700/60  text-white hover:bg-neutral-600/60'
+                    className='bg-neutral-700/60 text-white hover:bg-neutral-600/60'
                     size={'small'}
                   >
                     All
                   </Button>
                   <Button
                     intent={'quaternary'}
-                    className='bg-neutral-700/60  text-white hover:bg-neutral-600/60'
+                    className='bg-neutral-700/60 text-white hover:bg-neutral-600/60'
                     size={'small'}
                   >
                     Music
                   </Button>
                   <Button
                     intent={'quaternary'}
-                    className='bg-neutral-700/60  text-white hover:bg-neutral-600/60'
+                    className='bg-neutral-700/60`` text-white hover:bg-neutral-600/60'
                     size={'small'}
                   >
                     Podcasts

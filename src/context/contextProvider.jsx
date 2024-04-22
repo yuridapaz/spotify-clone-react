@@ -6,8 +6,9 @@ export const StateContext = createContext();
 
 const StateProvider = ({ children, initialState, reducer }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const accessToken = localStorage.getItem('spotify_access_token');
 
-  return <StateContext.Provider value={{ state, dispatch }}>{children}</StateContext.Provider>;
+  return <StateContext.Provider value={{ state, dispatch, accessToken }}>{children}</StateContext.Provider>;
 };
 
 export default StateProvider;
