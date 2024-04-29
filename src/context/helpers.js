@@ -7,27 +7,32 @@ export const getAuthorizationCode = (urlSearch) => {
   return urlCode;
 };
 
-export const fetchAccessToken = (authorizationCode) => {
-  console.log(authorizationCode);
-  const axiosPostData = {
+const fetchAccessToken = async (authorizationCode) => {
+  const postData = {
     grant_type: 'authorization_code',
     code: authorizationCode,
     redirect_uri: import.meta.env.VITE_SPOTIFY_API_REDIRECT_URI
   };
-  return callAuthorizationApi(axiosPostData);
+  const apiTokenUrl = import.meta.env.VITE_SPOTIFY_API_TOKEN_URL;
+  const options = {
+    headers: {
+      'content-type': 'application/x-www-form-urlencoded',
+      Authorization:
+        'Basic ' +
+        btoa(import.meta.env.VITE_SPOTIFY_API_CLIENT_ID + ':' + import.meta.env.VITE_SPOTIFY_API_CLIENT_SECRET)
+    }
+  };
+  const { data } = await axios.post(apiTokenUrl, postData, options);
+  return data;
 };
 
-export const refreshAccessToken = () => {
+const fetchRefreshToken = async () => {
   const refreshToken = localStorage.getItem('spotify_refresh_token');
-  const axiosPostData = {
+  const postData = {
     grant_type: 'refresh_token',
     refresh_token: refreshToken,
     client_id: import.meta.env.VITE_SPOTIFY_API_CLIENT_ID
   };
-  return callAuthorizationApi(axiosPostData);
-};
-
-const callAuthorizationApi = async (postData) => {
   const apiTokenUrl = import.meta.env.VITE_SPOTIFY_API_TOKEN_URL;
   const options = {
     headers: {
@@ -40,38 +45,33 @@ const callAuthorizationApi = async (postData) => {
   const { data } = await axios.post(apiTokenUrl, postData, options);
   console.log(data);
   return data;
-  // try {
-  //   const { data } = await axios.post(apiTokenUrl, postData, options);
-  //   if (data.access_token) setLocalToken('access_token', data.access_token);
-  //   if (data.refresh_token) setLocalToken('refresh_token', data.refresh_token);
-  //   return data.access_token;
-  // } catch (error) {
-  //   if (error.response === 401) {
-  //     refreshAccessToken();
-  //   } else {
-  //     // console.log(error.response);
-  //   }
-  // }
 };
 
-//
-export const useFetchAccessToken = (code) => {
+export const useAccessToken = (authorizationCode) => {
   const query = useQuery({
     queryKey: ['access_token', 'refresh_token'],
-    queryFn: () => fetchAccessToken(code),
-    enabled: !!code,
+    queryFn: () => fetchAccessToken(authorizationCode),
+    enabled: !!authorizationCode,
     refetchOnWindowFocus: false
   });
 
   if (query?.failureReason?.request?.status === 401) {
-    refreshAccessToken();
+    fetchRefreshToken();
   }
-
-  if (query.data.access_token) setLocalToken('access_token', query.data.access_token);
-  if (query.data.refresh_token) setLocalToken('refresh_token', query.data.refresh_token);
+  setLocalToken('access_token', query.data.access_token);
+  setLocalToken('refresh_token', query.data.refresh_token);
 };
 
-//
+export const useRefreshToken = () => {
+  const query = useQuery({
+    queryKey: ['access_token', 'refresh_token'],
+    queryFn: () => fetchRefreshToken(),
+    refetchOnWindowFocus: false
+  });
+  console.log(query.data);
+  setLocalToken('access_token', query.data.access_token);
+};
+
 export const callApi = async (accessToken, requestUrl, handleCallBack) => {
   const options = {
     headers: {
@@ -83,7 +83,7 @@ export const callApi = async (accessToken, requestUrl, handleCallBack) => {
     const { data } = await axios.get(requestUrl, options);
     handleCallBack(data);
   } catch (error) {
-    if (error.response.status === 401) refreshAccessToken();
+    // if (error.response.status === 401) refreshAccessToken();
   }
 };
 
