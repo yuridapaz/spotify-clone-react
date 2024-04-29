@@ -1,6 +1,7 @@
 import './index.css';
 
 import { BrowserRouter, RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import reducer, { initialState } from './reducer/reducer.js';
 
 import App from './App.jsx';
@@ -10,27 +11,26 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import StateProvider from './context/contextProvider.jsx';
 
-const router = createBrowserRouter(
-  [
-    {
-      path: '/',
-      element: <App />,
-      children: [
-        {
-          path: '/',
-          element: <MainPage />
-        },
-        { path: '/playlist/:playlistID', element: <PlaylistPage /> }
-      ]
-    }
-  ]
-  // { basename: '/' }
-);
+const queryClient = new QueryClient();
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+    children: [
+      {
+        path: '/',
+        element: <MainPage />
+      },
+      { path: '/playlist/:playlistID', element: <PlaylistPage /> }
+    ]
+  }
+]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  // <React.StrictMode>
   <StateProvider initialState={initialState} reducer={reducer}>
-    <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   </StateProvider>
-  // </React.StrictMode>
 );

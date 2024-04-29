@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
 
 export const getAuthorizationCode = (urlSearch) => {
   const urlParams = new URLSearchParams(urlSearch);
@@ -7,6 +8,7 @@ export const getAuthorizationCode = (urlSearch) => {
 };
 
 export const fetchAccessToken = (authorizationCode) => {
+  console.log(authorizationCode);
   const axiosPostData = {
     grant_type: 'authorization_code',
     code: authorizationCode,
@@ -35,21 +37,41 @@ const callAuthorizationApi = async (postData) => {
         btoa(import.meta.env.VITE_SPOTIFY_API_CLIENT_ID + ':' + import.meta.env.VITE_SPOTIFY_API_CLIENT_SECRET)
     }
   };
-
-  try {
-    const { data } = await axios.post(apiTokenUrl, postData, options);
-    if (data.access_token) setLocalToken('access_token', data.access_token);
-    if (data.refresh_token) setLocalToken('refresh_token', data.refresh_token);
-    return data.access_token;
-  } catch (error) {
-    if (error.response === 401) {
-      refreshAccessToken();
-    } else {
-      console.log(error.response);
-    }
-  }
+  const { data } = await axios.post(apiTokenUrl, postData, options);
+  console.log(data);
+  return data;
+  // try {
+  //   const { data } = await axios.post(apiTokenUrl, postData, options);
+  //   if (data.access_token) setLocalToken('access_token', data.access_token);
+  //   if (data.refresh_token) setLocalToken('refresh_token', data.refresh_token);
+  //   return data.access_token;
+  // } catch (error) {
+  //   if (error.response === 401) {
+  //     refreshAccessToken();
+  //   } else {
+  //     // console.log(error.response);
+  //   }
+  // }
 };
 
+//
+export const useFetchAccessToken = (code) => {
+  const query = useQuery({
+    queryKey: ['access_token', 'refresh_token'],
+    queryFn: () => fetchAccessToken(code),
+    enabled: !!code,
+    refetchOnWindowFocus: false
+  });
+
+  if (query?.failureReason?.request?.status === 401) {
+    refreshAccessToken();
+  }
+
+  if (query.data.access_token) setLocalToken('access_token', query.data.access_token);
+  if (query.data.refresh_token) setLocalToken('refresh_token', query.data.refresh_token);
+};
+
+//
 export const callApi = async (accessToken, requestUrl, handleCallBack) => {
   const options = {
     headers: {
