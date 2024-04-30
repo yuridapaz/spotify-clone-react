@@ -21,8 +21,7 @@ const App = () => {
     <>
       {accessToken ? (
         <div className='bg-black'>
-          <NavBar />
-          <div className=''>
+          <div className='flex '>
             <SideBar />
             <Outlet />
           </div>
