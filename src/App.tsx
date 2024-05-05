@@ -1,27 +1,32 @@
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { getAuthorizationCode, useAccessToken } from './context/helpers';
+import { fetchAuthorization, getAuthorizationCode, useAccessToken } from './context/helpers';
+import { useEffect, useState } from 'react';
 
+import { Button } from './components/Button';
 import LoginPage from './pages/Login';
-import NavBar from './components/Navbar';
 import SideBar from './components/SideBar';
 import { spotifyLoginLink } from './utils/constants';
+import { useMutation } from '@tanstack/react-query';
 import { useStateProvider } from './context/contextProvider';
 
 const App = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { state, dispatch, accessToken } = useStateProvider();
+  const { mutate } = useAccessToken();
 
-  if (!accessToken && location.search) {
-    const code = getAuthorizationCode(location.search);
-    useAccessToken(code);
-  }
+  useEffect(() => {
+    if (!accessToken && location.search) {
+      const code = getAuthorizationCode(location.search);
+      mutate(code);
+    }
+  }, []);
 
   return (
     <>
       {accessToken ? (
         <div className='bg-black'>
-          <div className='flex '>
+          <div className='flex'>
             <SideBar />
             <Outlet />
           </div>

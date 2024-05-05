@@ -25,7 +25,7 @@ const SideBarList = () => {
 
   return (
     <ul className='mb-8'>
-      {sideBarLinks.map((obj, i) => (
+      {/* {sideBarLinks.map((obj, i) => (
         <li className='' key={i}>
           <Link to={obj.link}>
             <Button
@@ -37,7 +37,7 @@ const SideBarList = () => {
             </Button>
           </Link>
         </li>
-      ))}
+      ))} */}
     </ul>
   );
 };
