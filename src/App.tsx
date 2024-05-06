@@ -1,24 +1,27 @@
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { fetchAuthorization, getAuthorizationCode, useAccessToken } from './context/helpers';
-import { useEffect, useState } from 'react';
+import { getAuthorizationCode, useAccessToken, useFetchApi, useRefreshToken } from './context/helpers';
 
-import { Button } from './components/Button';
 import LoginPage from './pages/Login';
 import SideBar from './components/SideBar';
+import { requestUrl } from './reducer/constants';
 import { spotifyLoginLink } from './utils/constants';
-import { useMutation } from '@tanstack/react-query';
+import { useEffect } from 'react';
 import { useStateProvider } from './context/contextProvider';
 
 const App = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { state, dispatch, accessToken } = useStateProvider();
+  const { accessToken } = useStateProvider();
   const { mutate } = useAccessToken();
 
   useEffect(() => {
     if (!accessToken && location.search) {
       const code = getAuthorizationCode(location.search);
-      mutate(code);
+      mutate(code, {
+        onSuccess: () => {
+          navigate('/'), navigate(0);
+        }
+      });
     }
   }, []);
 

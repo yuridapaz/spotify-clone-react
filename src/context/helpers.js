@@ -8,7 +8,7 @@ export const getAuthorizationCode = (urlSearch) => {
   return urlCode;
 };
 
-export const fetchAuthorization = async (authorizationCode) => {
+const fetchAuthorization = async (authorizationCode) => {
   const postData = {
     grant_type: 'authorization_code',
     code: authorizationCode,
@@ -24,7 +24,6 @@ export const fetchAuthorization = async (authorizationCode) => {
     }
   };
   const { data } = await axios.post(apiTokenUrl, postData, options);
-  console.log(data);
   return data;
 };
 
@@ -45,39 +44,19 @@ const fetchRefreshToken = async () => {
     }
   };
   const { data } = await axios.post(apiTokenUrl, postData, options);
-  console.log(data);
-  return data;
+  setLocalToken('access_token', data.access_token);
 };
 
 export const useAccessToken = () => {
   const query = useMutation({
-    mutationFn: fetchAuthorization
+    mutationFn: fetchAuthorization,
+    onSuccess: (data) => {
+      setLocalToken('access_token', data.access_token);
+      setLocalToken('refresh_token', data.refresh_token);
+    },
+    onError: () => {}
   });
-
-  // const query = useQuery({
-  //   queryKey: ['access_token', 'refresh_token'],
-  //   queryFn: () => fetchAuthorization(authorizationCode),
-  //   enabled: !!authorizationCode,
-  //   refetchOnWindowFocus: false
-  // });
-
-  // if (query?.failureReason?.request?.status === 401) fetchRefreshToken();
-
-  // if (query?.data?.access_token) {
-  //   setLocalToken('access_token', query.data.access_token);
-  //   setLocalToken('refresh_token', query.data.refresh_token);
-  // }
-
   return query;
-};
-
-export const useRefreshToken = () => {
-  const query = useQuery({
-    queryKey: ['access_token', 'refresh_token'],
-    queryFn: () => fetchRefreshToken(),
-    refetchOnWindowFocus: false
-  });
-  setLocalToken('access_token', query.data.access_token);
 };
 
 export const callApi = async (requestUrl) => {
@@ -91,29 +70,28 @@ export const callApi = async (requestUrl) => {
   return data;
 };
 
-export const useFetchApi = async (requestUrl, handleCallbackFunction) => {
+export const useFetchApi = (requestUrl, handleCallbackFunction) => {
   const query = useQuery({
-    queryKey: [''],
+    queryKey: ['teste'],
     queryFn: () => callApi(requestUrl),
     refetchOnWindowFocus: false
   });
-  if (query?.failureReason?.request?.status === 401) fetchRefreshToken();
-  //
+
+  if (query?.failureReason?.request?.status === 401) {
+    fetchRefreshToken();
+  }
+
   handleCallbackFunction(query.data);
-  //
 };
 
-////
 export const setLocalToken = (type, token) => {
   switch (type) {
     case 'access_token':
       localStorage.setItem('spotify_access_token', token);
       break;
-
     case 'refresh_token':
       localStorage.setItem('spotify_refresh_token', token);
       break;
-
     default:
       break;
   }
