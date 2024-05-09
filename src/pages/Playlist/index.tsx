@@ -10,7 +10,7 @@ const PlaylistPage = () => {
 
   useEffect(() => {
     const getPlaylist = async () => {
-      callApi(accessToken, requestUrl.PLAYLIST + playlistID, handlePlaylist);
+      // callApi(accessToken, requestUrl.PLAYLIST + playlistID, handlePlaylist);
     };
     getPlaylist();
   }, []);

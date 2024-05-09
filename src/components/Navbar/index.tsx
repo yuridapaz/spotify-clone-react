@@ -6,8 +6,8 @@ import SearchInput from '../SearchInput';
 
 const NavBar = () => {
   return (
-    <div className='flex w-full justify-between border border-red-500 p-2'>
-      <div className='flex items-center space-x-4 pl-16'>
+    <div className='flex w-full justify-between  p-2'>
+      <div className='flex items-center space-x-0 pl-12'>
         <IconButton
           icon={<GoChevronLeft className='h-8 w-8' />}
           intent={'invisible'}

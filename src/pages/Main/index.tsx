@@ -2,15 +2,15 @@ import { Button } from '../../components/Button';
 
 const MainPage = () => {
   return (
-    <div className='h-full w-full'>
-      <div className='flex w-full items-start space-x-3 rounded-t-lg border border-blue-50 p-4'>
-        <Button intent={'quaternary'} className='bg-neutral-700/60 text-white hover:bg-neutral-600/60' size={'small'}>
+    <div className='w-full rounded-md bg-neutral-900'>
+      <div className=''>
+        <Button intent={'tertiary'} className='bg-neutral-700/60 text-white hover:bg-neutral-600/60' size={'small'}>
           All
         </Button>
-        <Button intent={'quaternary'} className='bg-neutral-700/60 text-white hover:bg-neutral-600/60' size={'small'}>
+        <Button intent={'tertiary'} className='bg-neutral-700/60 text-white hover:bg-neutral-600/60' size={'small'}>
           Music
         </Button>
-        <Button intent={'quaternary'} className='bg-neutral-700/60`` text-white hover:bg-neutral-600/60' size={'small'}>
+        <Button intent={'tertiary'} className='bg-neutral-700/60`` text-white hover:bg-neutral-600/60' size={'small'}>
           Podcasts
         </Button>
       </div>

@@ -1,9 +1,10 @@
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { getAuthorizationCode, useAccessToken, useFetchApi, useRefreshToken } from './context/helpers';
+import { getAuthorizationCode, useAccessToken } from './context/helpers';
 
+import Footer from './components/Footer';
 import LoginPage from './pages/Login';
+import NavBar from './components/Navbar';
 import SideBar from './components/SideBar';
-import { requestUrl } from './reducer/constants';
 import { spotifyLoginLink } from './utils/constants';
 import { useEffect } from 'react';
 import { useStateProvider } from './context/contextProvider';
@@ -28,11 +29,13 @@ const App = () => {
   return (
     <>
       {accessToken ? (
-        <div className='bg-black'>
-          <div className='flex'>
+        <div className='flex h-screen flex-col bg-black'>
+          <NavBar />
+          <div className='flex w-full flex-1 space-x-2 px-2'>
             <SideBar />
             <Outlet />
           </div>
+          <Footer />
         </div>
       ) : (
         <LoginPage spotifyUrl={spotifyLoginLink} />
