@@ -3,6 +3,7 @@ import { LuArrowLeft, LuArrowRight, LuLibrary, LuPlus } from 'react-icons/lu';
 
 import { FaBars } from 'react-icons/fa';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
+import SideBarList from './sidebarList';
 import { useStateProvider } from '../../context/contextProvider';
 
 const SideBar = () => {
@@ -53,6 +54,7 @@ const SideBar = () => {
           </Button>
         </div>
       </div>
+      <SideBarList />
     </div>
   );
 };

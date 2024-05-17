@@ -59,7 +59,7 @@ export const useAccessToken = () => {
   return query;
 };
 
-export const callApi = async (requestUrl) => {
+export const callApi = async (requestUrl, handleCallBackFunction) => {
   const accessToken = localStorage.getItem('spotify_access_token');
   const options = {
     headers: {
@@ -67,13 +67,14 @@ export const callApi = async (requestUrl) => {
     }
   };
   const { data } = await axios.get(requestUrl, options);
+  handleCallBackFunction(data);
   return data;
 };
 
-export const useFetchApi = (requestUrl, handleCallbackFunction) => {
+export const useFetchApi = (queryKey, requestUrl, handleCallBackFunction) => {
   const query = useQuery({
-    queryKey: ['teste'],
-    queryFn: () => callApi(requestUrl),
+    queryKey: [`${queryKey}`],
+    queryFn: () => callApi(requestUrl, handleCallBackFunction),
     refetchOnWindowFocus: false
   });
 
@@ -81,7 +82,7 @@ export const useFetchApi = (requestUrl, handleCallbackFunction) => {
     fetchRefreshToken();
   }
 
-  handleCallbackFunction(query.data);
+  return query;
 };
 
 export const setLocalToken = (type, token) => {

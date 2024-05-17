@@ -9,6 +9,7 @@ import MainPage from './pages/Main/index.js';
 import PlaylistPage from './pages/Playlist/index.js';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import StateProvider from './context/contextProvider.jsx';
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <StateProvider initialState={initialState} reducer={reducer}>
     <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={true} />
       <RouterProvider router={router} />
     </QueryClientProvider>
   </StateProvider>
