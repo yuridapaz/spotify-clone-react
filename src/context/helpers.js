@@ -1,6 +1,7 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 
 import axios from 'axios';
+import { requestUrl } from '../reducer/constants';
 
 export const getAuthorizationCode = (urlSearch) => {
   const urlParams = new URLSearchParams(urlSearch);
@@ -59,30 +60,23 @@ export const useAccessToken = () => {
   return query;
 };
 
-export const callApi = async (requestUrl, handleCallBackFunction) => {
+export const callApi = async (requestUrl) => {
   const accessToken = localStorage.getItem('spotify_access_token');
   const options = {
     headers: {
       Authorization: 'Bearer ' + accessToken
     }
   };
-  const { data } = await axios.get(requestUrl, options);
-  handleCallBackFunction(data);
-  return data;
-};
 
-export const useFetchApi = (queryKey, requestUrl, handleCallBackFunction) => {
-  const query = useQuery({
-    queryKey: [`${queryKey}`],
-    queryFn: () => callApi(requestUrl, handleCallBackFunction),
-    refetchOnWindowFocus: false
-  });
-
-  if (query?.failureReason?.request?.status === 401) {
-    fetchRefreshToken();
+  try {
+    const { data } = await axios.get(requestUrl, options);
+    return data;
+  } catch (error) {
+    if (error.response.status === 401) {
+      fetchRefreshToken();
+      callApi(requestUrl);
+    }
   }
-
-  return query;
 };
 
 export const setLocalToken = (type, token) => {
@@ -96,4 +90,30 @@ export const setLocalToken = (type, token) => {
     default:
       break;
   }
+};
+
+/// NEW ///
+
+export const useFetchPlaylists = () => {
+  return useQuery({
+    queryKey: ['playlists'],
+    queryFn: () => callApi(requestUrl.PLAYLISTS),
+    refetchOnWindowFocus: false
+  });
+};
+
+export const useFetchAlbums = () => {
+  return useQuery({
+    queryKey: ['albums'],
+    queryFn: () => callApi(requestUrl.ALBUMS),
+    refetchOnWindowFocus: false
+  });
+};
+
+export const useFetchArtists = () => {
+  return useQuery({
+    queryKey: ['artists'],
+    queryFn: () => callApi(requestUrl.ARTISTS),
+    refetchOnWindowFocus: false
+  });
 };

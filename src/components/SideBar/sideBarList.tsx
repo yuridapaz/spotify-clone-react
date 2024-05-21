@@ -1,90 +1,57 @@
-import { reducerCases, requestUrl } from '../../reducer/constants';
-import { useEffect, useState } from 'react';
+import { useFetchAlbums, useFetchArtists, useFetchPlaylists } from '../../context/helpers';
 
 import { Link } from 'react-router-dom';
-import { useFetchApi } from '../../context/helpers';
-import { useStateProvider } from '../../context/contextProvider';
 
 const SideBarList = () => {
-  const { dispatch, state } = useStateProvider();
-  const [first, setFirst] = useState([]);
+  const { data: playlistData } = useFetchPlaylists();
+  const { data: albumData } = useFetchAlbums();
+  const { data: artistsData } = useFetchArtists();
+  const formatData = (arr: any, type: string) => {
+    switch (type) {
+      case 'album':
+        return arr.map((elem: any) => ({
+          id: elem.album.id,
+          name: elem.album.name,
+          type: elem.album.type,
+          images: elem.album.images
+        }));
+        break;
 
-  const handlePlaylists = (data: any) => {
-    dispatch({ type: reducerCases.SET_PLAYLISTS, playlists: data.items });
+      default:
+        return arr.map((elem: any) => ({
+          id: elem.id,
+          name: elem.name,
+          type: elem.type,
+          images: elem.images
+        }));
+        break;
+    }
   };
 
-  const { data, isFetching, isLoading, isSuccess, status } = useFetchApi(
-    'playlists',
-    requestUrl.PLAYLISTS,
-    handlePlaylists
-  );
+  if (playlistData && albumData && artistsData) {
+    const formatedPlaylistData = formatData(playlistData?.items, '');
+    const formatedAlbumsData = formatData(albumData?.items, 'album');
+    const formatedArtistsData = formatData(artistsData?.artists?.items, '');
 
-  return (
-    <div>
-      <ul>
-        <Link to={'/'}>
-          <li>Lista</li>
-        </Link>
-        <Link to={'/'}>
-          <li>Lista</li>
-        </Link>
-        <Link to={'/'}>
-          <li>Lista</li>
-        </Link>
-        <Link to={'/'}>
-          <li>Lista</li>
-        </Link>
-        <Link to={'/'}>
-          <li>Lista</li>
-        </Link>
-        <Link to={'/'}>
-          <li>Lista</li>
-        </Link>
-        <Link to={'/'}>
-          <li>Lista</li>
-        </Link>
-        <Link to={'/'}>
-          <li>Lista</li>
-        </Link>
-        <Link to={'/'}>
-          <li>Lista</li>
-        </Link>
-        <Link to={'/'}>
-          <li>Lista</li>
-        </Link>
-        <Link to={'/'}>
-          <li>Lista</li>
-        </Link>
-        <Link to={'/'}>
-          <li>Lista</li>
-        </Link>
-        <Link to={'/'}>
-          <li>Lista</li>
-        </Link>
-        <Link to={'/'}>
-          <li>Lista</li>
-        </Link>
-        <Link to={'/'}>
-          <li>Lista</li>
-        </Link>
-        <Link to={'/'}>
-          <li>Lista</li>
-        </Link>
-        <Link to={'/'}>
-          <li>Lista</li>
-        </Link>
-        <Link to={'/'}>
-          <li>Lista</li>
-        </Link>
-        <Link to={'/'}>
-          <li>Lista</li>
-        </Link>
-        <Link to={'/'}>
-          <li>Lista</li>
-        </Link>
-      </ul>
-    </div>
-  );
+    const displayData = [...formatedPlaylistData, ...formatedAlbumsData, ...formatedArtistsData]
+      .map((value) => ({ value, sort: Math.random() }))
+      .sort((a, b) => a.sort - b.sort)
+      .map(({ value }) => value);
+
+    return (
+      <div>
+        <ul className='text-white'>
+          {displayData.map((listItem) => {
+            return (
+              <li key={listItem.id}>
+                <Link to={`/`}>{listItem.name}</Link>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    );
+  }
 };
 
 export default SideBarList;

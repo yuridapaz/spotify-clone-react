@@ -11,14 +11,7 @@ export const reducerCases = {
 export const requestUrl = {
   ME: 'https://api.spotify.com/v1/me',
   PLAYLISTS: 'https://api.spotify.com/v1/me/playlists',
-  PLAYLIST: 'https://api.spotify.com/v1/playlists/'
-  // DEVICES: 'https://api.spotify.com/v1/me/player/devices',
-  // PLAY: 'https://api.spotify.com/v1/me/player/play',
-  // PAUSE: 'https://api.spotify.com/v1/me/player/pause',
-  // NEXT: 'https://api.spotify.com/v1/me/player/next',
-  // PREVIOUS: 'https://api.spotify.com/v1/me/player/previous',
-  // PLAYER: 'https://api.spotify.com/v1/me/player',
-  // TRACKS: 'https://api.spotify.com/v1/playlists/{{PlaylistId}}/tracks',
-  // CURRENTLYPLAYING: 'https://api.spotify.com/v1/me/player/currently-playing',
-  // SHUFFLE: 'https://api.spotify.com/v1/me/player/shuffle'
+  PLAYLIST: 'https://api.spotify.com/v1/playlists/',
+  ALBUMS: 'https://api.spotify.com/v1/me/albums',
+  ARTISTS: 'https://api.spotify.com/v1/me/following?type=artist'
 };
