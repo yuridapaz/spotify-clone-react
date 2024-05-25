@@ -29,9 +29,9 @@ const App = () => {
   return (
     <>
       {accessToken ? (
-        <div className='flex h-screen flex-col bg-black'>
+        <div className='flex h-screen max-h-screen min-h-screen flex-col bg-black'>
           <NavBar />
-          <div className='flex w-full flex-1 space-x-2 px-2'>
+          <div className='flex h-full space-x-2 px-2'>
             <SideBar />
             <Outlet />
           </div>

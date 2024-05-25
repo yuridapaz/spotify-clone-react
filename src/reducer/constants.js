@@ -10,7 +10,7 @@ export const reducerCases = {
 
 export const requestUrl = {
   ME: 'https://api.spotify.com/v1/me',
-  PLAYLISTS: 'https://api.spotify.com/v1/me/playlists',
+  PLAYLISTS: 'https://api.spotify.com/v1/me/playlists/',
   PLAYLIST: 'https://api.spotify.com/v1/playlists/',
   ALBUMS: 'https://api.spotify.com/v1/me/albums',
   ARTISTS: 'https://api.spotify.com/v1/me/following?type=artist'

@@ -10,8 +10,8 @@ const SideBar = () => {
   const { state, dispatch, accessToken } = useStateProvider();
 
   return (
-    <div className='w-80 rounded-md bg-neutral-900 p-2'>
-      <div className='flex w-full justify-between border border-white'>
+    <div className='flex w-80 flex-col rounded-md  bg-neutral-900 p-2'>
+      <div className='flex min-h-fit  w-full justify-between '>
         <Button leadingIcon={<LuLibrary />} intent={'invisible'} className=''>
           Library
         </Button>
@@ -20,8 +20,8 @@ const SideBar = () => {
           <IconButton icon={<LuArrowRight />} intent={'tertiary'} className='hover:bg-white/5' />
         </div>
       </div>
-      <div className='0 flex flex-col'>
-        <div className=' overflow-x-scroll whitespace-nowrap '>
+      <div className='flex min-h-fit flex-col'>
+        <div className='overflow-x-scroll whitespace-nowrap '>
           <Button intent={'tertiary'} size={'small'}>
             Playlist
           </Button>
@@ -47,7 +47,7 @@ const SideBar = () => {
             Artists
           </Button>
         </div>
-        <div className='flex items-center justify-between'>
+        <div className='flex min-h-fit items-center justify-between '>
           <IconButton icon={<FaMagnifyingGlass />} intent={'invisible'} />
           <Button trailingIcon={<FaBars />} intent={'invisible'}>
             Recents
@@ -58,5 +58,4 @@ const SideBar = () => {
     </div>
   );
 };
-
 export default SideBar;

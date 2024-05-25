@@ -74,7 +74,7 @@ export const callApi = async (requestUrl) => {
   } catch (error) {
     if (error.response.status === 401) {
       fetchRefreshToken();
-      callApi(requestUrl);
+      return callApi(requestUrl);
     }
   }
 };
@@ -97,23 +97,20 @@ export const setLocalToken = (type, token) => {
 export const useFetchPlaylists = () => {
   return useQuery({
     queryKey: ['playlists'],
-    queryFn: () => callApi(requestUrl.PLAYLISTS),
-    refetchOnWindowFocus: false
+    queryFn: () => callApi(requestUrl.PLAYLISTS)
   });
 };
 
 export const useFetchAlbums = () => {
   return useQuery({
     queryKey: ['albums'],
-    queryFn: () => callApi(requestUrl.ALBUMS),
-    refetchOnWindowFocus: false
+    queryFn: () => callApi(requestUrl.ALBUMS)
   });
 };
 
 export const useFetchArtists = () => {
   return useQuery({
     queryKey: ['artists'],
-    queryFn: () => callApi(requestUrl.ARTISTS),
-    refetchOnWindowFocus: false
+    queryFn: () => callApi(requestUrl.ARTISTS)
   });
 };
