@@ -10,7 +10,7 @@ const SideBar = () => {
   const { state, dispatch, accessToken } = useStateProvider();
 
   return (
-    <div className='flex w-80 flex-col rounded-md  bg-neutral-900 p-2'>
+    <div className='flex w-96 flex-col rounded-md  bg-neutral-900 p-2'>
       <div className='flex min-h-fit  w-full justify-between '>
         <Button leadingIcon={<LuLibrary />} intent={'invisible'} className=''>
           Library

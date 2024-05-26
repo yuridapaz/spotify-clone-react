@@ -38,17 +38,20 @@ const SideBarList = () => {
     // .map(({ value }) => value);
 
     return (
-      <div className='flex overflow-auto'>
-        <ul className=' text-gray-400'>
-          {displayData.map((listItem) => {
-            return (
-              <Link to={'/'} key={listItem.id}>
-                <li className={''}>{listItem.name}</li>
-              </Link>
-            );
-          })}
-        </ul>
-      </div>
+      <ul className='flex flex-col overflow-auto text-gray-400'>
+        {displayData.map((listItem) => {
+          return (
+            <Link to={'/'} className='min-h-fit' key={listItem.id}>
+              <li className='relative min-h-fit max-w-fit truncate text-ellipsis text-nowrap  pr-16'>
+                {listItem.name}
+                <span className='absolute right-0 top-1 rounded-full bg-slate-400 px-2 text-xs capitalize text-white'>
+                  {listItem.type}
+                </span>
+              </li>
+            </Link>
+          );
+        })}
+      </ul>
     );
   }
 };
