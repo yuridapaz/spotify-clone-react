@@ -41,11 +41,15 @@ const SideBarList = () => {
       <ul className='flex flex-col overflow-auto text-gray-400'>
         {displayData.map((listItem) => {
           return (
-            <Link to={'/'} className='min-h-fit' key={listItem.id}>
-              <li className='relative min-h-fit max-w-fit truncate text-ellipsis text-nowrap  pr-16'>
+            <Link
+              to={`/playlist/${listItem.id}`}
+              className='mr-1 min-h-fit rounded-sm px-2 py-1 hover:bg-neutral-4'
+              key={listItem.id}
+            >
+              <li className='relative min-h-fit max-w-fit truncate text-ellipsis text-nowrap pr-16 text-sm text-white '>
                 {listItem.name}
-                <span className='absolute right-0 top-1 rounded-full bg-slate-400 px-2 text-xs capitalize text-white'>
-                  {listItem.type}
+                <span className='absolute right-2 top-1/2 -translate-y-1/2 text-xs capitalize text-neutral-1'>
+                  • {listItem.type}
                 </span>
               </li>
             </Link>

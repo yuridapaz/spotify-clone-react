@@ -5,7 +5,7 @@ export const buttonVariants = cva('transition-all cursor-pointer disabled:cursor
     intent: {
       primary: 'bg-[#1fdf64] text-black',
       secondary: 'bg-white text-black',
-      tertiary: 'bg-neutral-4 text-neutral-5 hover:text-white',
+      tertiary: 'bg-neutral-4 text-white hover:bg-white/10',
       outline: 'bg-none outline outline-1 outline-black',
       invisible: 'bg-none text-neutral-5'
     },
@@ -50,7 +50,7 @@ export const buttonVariants = cva('transition-all cursor-pointer disabled:cursor
     { _content: ['text', 'textAndIcon'], size: 'extraSmall', className: 'px-2.5 py-1.5 text-xs' },
     { _content: ['text', 'textAndIcon'], size: 'small', className: 'px-3 py-2 text-sm' },
     { _content: ['text', 'textAndIcon'], size: 'medium', className: 'px-4 py-3 text-sm' },
-    { _content: ['text', 'textAndIcon'], size: 'large', className: 'px-4.5 py-3.5 text-base' },
+    { _content: ['text', 'textAndIcon'], size: 'large', className: 'p-4 text-base' },
     { _content: ['text', 'textAndIcon'], size: 'extraLarge', className: 'px-5 py-4 text-lg' }
   ]
 });

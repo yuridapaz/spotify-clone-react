@@ -10,40 +10,46 @@ const SideBar = () => {
   const { state, dispatch, accessToken } = useStateProvider();
 
   return (
-    <div className='flex w-96 flex-col rounded-md  bg-neutral-900 p-2'>
-      <div className='flex min-h-fit  w-full justify-between '>
-        <Button leadingIcon={<LuLibrary />} intent={'invisible'} className=''>
-          Library
+    <div className='flex w-96 flex-col rounded-md bg-neutral-900 p-2'>
+      <div className='mb-4 mt-2 flex w-full items-center justify-between'>
+        <Button
+          leadingIcon={<LuLibrary />}
+          intent={'invisible'}
+          className='pl-2 hover:text-white'
+          size={'extraLarge'}
+          bold
+        >
+          Your Library
         </Button>
-        <div>
-          <IconButton icon={<LuPlus />} intent={'tertiary'} className='hover:bg-white/5' />
-          <IconButton icon={<LuArrowRight />} intent={'tertiary'} className='hover:bg-white/5' />
+        <div className=''>
+          <IconButton icon={<LuPlus className='h-6 w-6' />} intent={'invisible'} className='hover:bg-white/5' />
+          <IconButton icon={<LuArrowRight className='h-6 w-6' />} intent={'invisible'} className='hover:bg-white/5' />
         </div>
       </div>
-      <div className='flex min-h-fit flex-col'>
-        <div className='overflow-x-scroll whitespace-nowrap '>
-          <Button intent={'tertiary'} size={'small'}>
+      <div className='flex min-h-min flex-col'>
+        <div className='space-x-1.5 overflow-x-scroll whitespace-nowrap pb-2'>
+          <Button intent={'tertiary'} size={'extraSmall'}>
             Playlist
           </Button>
-          <Button intent={'tertiary'} size={'small'}>
+          <Button intent={'tertiary'} size={'extraSmall'}>
             Podcasts & Shows
           </Button>
-          <Button intent={'tertiary'} size={'small'}>
+          <Button intent={'tertiary'} size={'extraSmall'}>
             Albums
           </Button>
-          <Button intent={'tertiary'} size={'small'}>
+          <Button intent={'tertiary'} size={'extraSmall'}>
             Artists
           </Button>
-          <Button intent={'tertiary'} size={'small'}>
+          <Button intent={'tertiary'} size={'extraSmall'}>
             Artists
           </Button>
-          <Button intent={'tertiary'} size={'small'}>
+          <Button intent={'tertiary'} size={'extraSmall'}>
             Artists
           </Button>
-          <Button intent={'tertiary'} size={'small'}>
+          <Button intent={'tertiary'} size={'extraSmall'}>
             Artists
           </Button>
-          <Button intent={'tertiary'} size={'small'}>
+          <Button intent={'tertiary'} size={'extraSmall'}>
             Artists
           </Button>
         </div>
