@@ -38,7 +38,7 @@ const SideBarList = () => {
     // .map(({ value }) => value);
 
     return (
-      <ul className='flex flex-col overflow-auto text-gray-400'>
+      <ul className='flex  flex-col overflow-auto text-gray-400'>
         {displayData.map((listItem) => {
           return (
             <Link
