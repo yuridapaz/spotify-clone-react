@@ -113,7 +113,7 @@ const PlaylistPage = () => {
                   <td className='py-1 text-left text-sm font-light hover:cursor-pointer hover:underline group-hover:bg-white/15 group-hover:text-white'>
                     {track?.track?.album?.name}
                   </td>
-                  {/* //REVIEW: min-w */}
+
                   <td className='min-w-48 py-1 pr-10 text-left text-sm font-light group-hover:bg-white/15'>
                     {convertTrackDate(track?.added_at)}
                   </td>
