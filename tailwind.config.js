@@ -31,6 +31,9 @@ export default {
           11: '#E13300',
           12: '#BA5D07'
         }
+      },
+      gridTemplateColumns: {
+        'grid-list': '16xpx minmax(120px, 6fr) minmax(120px, 4fr) minmax(120px, 3fr) minmax(120px, 1fr)'
       }
     }
   },
