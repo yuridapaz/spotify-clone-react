@@ -31,3 +31,17 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+/*
+ */
+@keyframes text-animation {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-text-animation {
+  animation: text-animation 10s linear infinite;
+}

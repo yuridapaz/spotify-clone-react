@@ -4,6 +4,7 @@ import { BrowserRouter, RouterProvider, createBrowserRouter } from 'react-router
 import { QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import reducer, { initialState } from './reducer/reducer.js';
 
+import AlbumPage from './pages/Album/index.js';
 import App from './App.jsx';
 import MainPage from './pages/Main/index.js';
 import PlaylistPage from './pages/Playlist/index.js';
@@ -29,7 +30,8 @@ const router = createBrowserRouter([
         path: '/',
         element: <MainPage />
       },
-      { path: '/playlist/:playlistID', element: <PlaylistPage /> }
+      { path: '/playlist/:playlistID', element: <PlaylistPage /> },
+      { path: '/album/:albumID', element: <AlbumPage /> }
     ]
   }
 ]);

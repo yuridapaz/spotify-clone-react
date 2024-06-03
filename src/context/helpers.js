@@ -94,23 +94,23 @@ export const setLocalToken = (type, token) => {
 
 /// NEW ///
 
-export const useFetchPlaylists = () => {
+export const useUserPlaylists = () => {
   return useQuery({
     queryKey: ['playlists'],
-    queryFn: () => callApi(requestUrl.PLAYLISTS)
+    queryFn: () => callApi(requestUrl.USER_PLAYLISTS)
   });
 };
 
-export const useFetchAlbums = () => {
+export const useUserAlbums = () => {
   return useQuery({
     queryKey: ['albums'],
-    queryFn: () => callApi(requestUrl.ALBUMS)
+    queryFn: () => callApi(requestUrl.USER_ALBUMS)
   });
 };
 
-export const useFetchArtists = () => {
+export const useUserArtists = () => {
   return useQuery({
     queryKey: ['artists'],
-    queryFn: () => callApi(requestUrl.ARTISTS)
+    queryFn: () => callApi(requestUrl.USER_ARTISTS)
   });
 };

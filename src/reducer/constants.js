@@ -9,9 +9,10 @@ export const reducerCases = {
 };
 
 export const requestUrl = {
-  ME: 'https://api.spotify.com/v1/me',
-  PLAYLISTS: 'https://api.spotify.com/v1/me/playlists/',
-  PLAYLIST: 'https://api.spotify.com/v1/playlists/',
-  ALBUMS: 'https://api.spotify.com/v1/me/albums',
-  ARTISTS: 'https://api.spotify.com/v1/me/following?type=artist'
+  PLAYLISTS: 'https://api.spotify.com/v1/playlists/',
+  ALBUMS: 'https://api.spotify.com/v1/albums/',
+  USER: 'https://api.spotify.com/v1/me',
+  USER_PLAYLISTS: 'https://api.spotify.com/v1/me/playlists/',
+  USER_ALBUMS: 'https://api.spotify.com/v1/me/albums',
+  USER_ARTISTS: 'https://api.spotify.com/v1/me/following?type=artist'
 };
